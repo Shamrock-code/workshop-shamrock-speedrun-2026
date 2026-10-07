@@ -334,6 +334,20 @@
     .card li span.note { color: var(--muted); }
     .card.wide { grid-column: 1 / -1; }
     .card .empty { color: var(--muted); font-style: italic; }
+    .card .people {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    .card .people li {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .card .people li::before { content: none; }
+    .card .people .aff { min-height: 1.2em; font-size: 0.8rem; color: var(--muted); }
     .card dl {
       display: grid;
       grid-template-columns: max-content 1fr;
@@ -548,6 +562,23 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="card wide">
+          <h2>Participants</h2>
+          <ul class="people">
+            <li><span>Adnan Ali Ahmad</span><span class="aff">CRAL</span></li>
+            <li><span>Noé Brucy</span><span class="aff">CRAL</span></li>
+            <li><span>Tine Colman</span><span class="aff">CRAL</span></li>
+            <li><span>Benoît Commerçon</span><span class="aff">CRAL</span></li>
+            <li><span>Timothée David--Cléris</span><span class="aff">CRAL</span></li>
+            <li><span>Jérémy Fensch</span><span class="aff">CRAL</span></li>
+            <li><span>Guillaume Laibe</span><span class="aff">CRAL</span></li>
+            <li><span>Yona Lapeyre</span><span class="aff"></span></li>
+            <li><span>Nai-Chieh Lin</span><span class="aff">CRAL</span></li>
+            <li><span>Louca</span><span class="aff"></span></li>
+            <li><span>Léodasce Sewanou</span><span class="aff"></span></li>
+          </ul>
         </div>
 
         <div class="card wide">
