@@ -333,6 +333,7 @@
     }
     .card li span.note { color: var(--muted); }
     .card.wide { grid-column: 1 / -1; }
+    .card .empty { color: var(--muted); font-style: italic; }
     .card dl {
       display: grid;
       grid-template-columns: max-content 1fr;
@@ -547,6 +548,11 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="card wide">
+          <h2>Outcomes</h2>
+          <p class="empty">Nothing yet.</p>
         </div>
 
         <div class="card wide">
