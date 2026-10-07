@@ -271,7 +271,7 @@
     section.block { padding: 48px 0; }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
     }
     .card {
@@ -332,6 +332,13 @@
       opacity: 1;
     }
     .card li span.note { color: var(--muted); }
+    .card.wide { grid-column: 1 / -1; }
+    .card dl {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 8px 24px;
+    }
+    .card dt { color: var(--muted); }
 
     /* Footer */
     footer {
@@ -349,6 +356,10 @@
     }
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--text); }
+
+    @media (max-width: 680px) {
+      .grid { grid-template-columns: 1fr; }
+    }
 
     @media (max-width: 560px) {
       .nav-links a { display: none; }
@@ -425,6 +436,14 @@
             <li>Post-Newtonian recipes for sinks</li>
             <li>Discuss Shamrock coordination</li>
           </ul>
+        </div>
+
+        <div class="card wide">
+          <h2>Practical info</h2>
+          <dl>
+            <dt>Where</dt>
+            <dd>CBP room, 1H M7, ENS de Lyon</dd>
+          </dl>
         </div>
       </div>
     </section>
