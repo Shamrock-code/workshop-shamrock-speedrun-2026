@@ -335,19 +335,17 @@
     .card.wide { grid-column: 1 / -1; }
     .card .empty { color: var(--muted); font-style: italic; }
     .card .people {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 10px;
+      padding: 8px 0;
+      text-align: center;
+      font-family: var(--mono);
+      font-variant-ligatures: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      line-height: 2.1;
+      color: var(--muted);
     }
-    .card .people li {
-      display: flex;
-      flex-direction: column;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-    }
+    .card .people li { padding: 0; border: none; }
     .card .people li::before { content: none; }
-    .card .people .aff { min-height: 1.2em; font-size: 0.8rem; color: var(--muted); }
     .card dl {
       display: grid;
       grid-template-columns: max-content 1fr;
@@ -444,6 +442,7 @@
 
     @media (max-width: 560px) {
       .cal { --gutter: 40px; }
+      .card .people { font-size: 0.82rem; }
       .brush { left: -4px; right: -4px; transform: translateY(-50%) rotate(-16deg); }
       .cal-head div { font-size: 0.8rem; }
       .nav-links a { display: none; }
@@ -567,17 +566,17 @@
         <div class="card wide">
           <h2>Participants</h2>
           <ul class="people">
-            <li><span>Adnan Ali Ahmad</span><span class="aff">CRAL</span></li>
-            <li><span>Noé Brucy</span><span class="aff">CRAL</span></li>
-            <li><span>Tine Colman</span><span class="aff">CRAL</span></li>
-            <li><span>Benoît Commerçon</span><span class="aff">CRAL</span></li>
-            <li><span>Timothée David--Cléris</span><span class="aff">IPAG</span></li>
-            <li><span>Jérémy Fensch</span><span class="aff">CRAL</span></li>
-            <li><span>Guillaume Laibe</span><span class="aff">CRAL</span></li>
-            <li><span>Yona Lapeyre</span><span class="aff">CRAL</span></li>
-            <li><span>Nai-Chieh Lin</span><span class="aff">CRAL</span></li>
-            <li><span>Louca Romain</span><span class="aff">CRAL</span></li>
-            <li><span>Léodasce Sewanou</span><span class="aff"></span></li>
+            <li>Adnan Ali Ahmad - CRAL, France</li>
+            <li>Noé Brucy - CRAL, France</li>
+            <li>Tine Colman - CRAL, France</li>
+            <li>Benoît Commerçon - CRAL, France</li>
+            <li>Timothée David--Cléris - IPAG, France</li>
+            <li>Jérémy Fensch - CRAL, France</li>
+            <li>Guillaume Laibe - CRAL, France</li>
+            <li>Yona Lapeyre - CRAL, France</li>
+            <li>Nai-Chieh Lin - CRAL, France</li>
+            <li>Louca Romain - CRAL, France</li>
+            <li>Léodasce Sewanou</li>
           </ul>
         </div>
 
