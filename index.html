@@ -433,7 +433,7 @@
     .card dt { color: var(--muted); }
 
     /* Schedule (week view) */
-    .cal { --hour: 30px; --gutter: 56px; --line: var(--border); }
+    .cal { --hour: 46px; --gutter: 56px; --line: var(--border); }
     .cal-title {
       font-size: 1.5rem;
       font-weight: 300;
@@ -474,18 +474,45 @@
       font-variant-numeric: tabular-nums;
     }
     .cal-day {
+      position: relative;
       border-left: 1px solid var(--line);
       background: repeating-linear-gradient(to bottom, transparent 0 13px, var(--line) 13px 14px, transparent 14px 14px)
                   no-repeat top / 100% 14px,
                   repeating-linear-gradient(to bottom, var(--line) 0 1px, transparent 1px var(--hour))
                   no-repeat 0 14px / 100% calc(var(--hour) * 9 + 1px);
     }
-    .brush {
+    .ev {
+      --c: var(--teal);
       position: absolute;
-      left: var(--gutter);
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%) rotate(-7deg);
+      left: 3px;
+      right: 3px;
+      top: calc(14px + var(--s) * var(--hour) + 1px);
+      height: calc(var(--d) * var(--hour) - 2px);
+      padding: 3px 6px;
+      overflow: hidden;
+      border-left: 3px solid var(--c);
+      border-radius: 6px;
+      background: color-mix(in srgb, var(--c) 14%, transparent);
+      font-size: 0.72rem;
+      line-height: 1.25;
+    }
+    .ev b { display: block; font-weight: 600; }
+    .ev i { display: none; font-style: normal; font-weight: 600; }
+    .ev span { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .ev.compact span { display: none; }
+    .ev.discussion { --c: var(--purple); background: color-mix(in srgb, var(--c) 18%, transparent); }
+    .ev.break { --c: var(--muted); color: var(--muted); }
+    .ev.wrap { --c: var(--blue); }
+    .ev.merge { --c: var(--green); background: color-mix(in srgb, var(--c) 22%, transparent); }
+    .ev.short { padding: 0 6px; font-size: 0; }
+    :root[data-theme="dark"] .ev.discussion { --c: var(--lime); }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .ev.discussion { --c: var(--lime); }
+    }
+    .brush {
+      max-width: 760px;
+      margin: 36px auto 4px;
+      transform: rotate(-2deg);
       pointer-events: none;
     }
     .brush svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -523,7 +550,10 @@
       .cal { --gutter: 40px; }
       .glow span { width: 120vw; height: 120vw; }
       .card .people { font-size: 0.82rem; }
-      .brush { left: -4px; right: -4px; transform: translateY(-50%) rotate(-16deg); }
+      .brush { margin: 24px -8px 0; }
+      .ev { left: 1px; right: 1px; padding: 2px 2px; font-size: 0.56rem; white-space: nowrap; letter-spacing: -0.01em; }
+      .ev span, .ev b { display: none; }
+      .ev i { display: block; }
       .cal-head div { font-size: 0.8rem; }
       .nav-links a { display: none; }
       .hero { padding: 64px 0 48px; }
@@ -626,26 +656,25 @@
                 <span style="--i:9">18:00</span>
               </div>
               <div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div>
-
-              <div class="brush">
-                <svg viewBox="0 0 1000 160" role="img" aria-label="Be as fast as possible, go wild !">
-                  <defs>
-                    <filter id="brush-filter" x="-5%" y="-30%" width="110%" height="160%">
-                      <feTurbulence type="fractalNoise" baseFrequency="0.004 0.35" numOctaves="3" seed="7" result="noise"/>
-                      <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" result="ragged"/>
-                      <feTurbulence type="fractalNoise" baseFrequency="0.002 0.6" numOctaves="2" seed="2" result="streaks"/>
-                      <feColorMatrix in="streaks" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.95" result="mask"/>
-                      <feComposite in="ragged" in2="mask" operator="in"/>
-                    </filter>
-                  </defs>
-                  <g filter="url(#brush-filter)" fill="none" stroke="#d62839" stroke-linecap="round">
-                    <path d="M30 92 C 260 70, 560 66, 975 74" stroke-width="96"/>
-                    <path d="M60 128 C 300 110, 600 104, 930 112" stroke-width="22" stroke-dasharray="620 40 160 400"/>
-                    <path d="M45 52 C 300 38, 620 34, 960 40" stroke-width="16" stroke-dasharray="380 30 420 400"/>
-                  </g>
-                  <text x="500" y="98" text-anchor="middle" transform="rotate(-0.8 500 98)">Be as fast as possible, go wild !</text>
-                </svg>
-              </div>
+            </div>
+            <div class="brush">
+              <svg viewBox="0 0 1000 160" role="img" aria-label="Be as fast as possible, go wild !">
+                <defs>
+                  <filter id="brush-filter" x="-5%" y="-30%" width="110%" height="160%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.004 0.35" numOctaves="3" seed="7" result="noise"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" result="ragged"/>
+                    <feTurbulence type="fractalNoise" baseFrequency="0.002 0.6" numOctaves="2" seed="2" result="streaks"/>
+                    <feColorMatrix in="streaks" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.95" result="mask"/>
+                    <feComposite in="ragged" in2="mask" operator="in"/>
+                  </filter>
+                </defs>
+                <g filter="url(#brush-filter)" fill="none" stroke="#d62839" stroke-linecap="round">
+                  <path d="M30 92 C 260 70, 560 66, 975 74" stroke-width="96"/>
+                  <path d="M60 128 C 300 110, 600 104, 930 112" stroke-width="22" stroke-dasharray="620 40 160 400"/>
+                  <path d="M45 52 C 300 38, 620 34, 960 40" stroke-width="16" stroke-dasharray="380 30 420 400"/>
+                </g>
+                <text x="500" y="98" text-anchor="middle" transform="rotate(-0.8 500 98)">Be as fast as possible, go wild !</text>
+              </svg>
             </div>
           </div>
         </div>
@@ -704,6 +733,44 @@
         var next = current() === "dark" ? "light" : "dark";
         root.dataset.theme = next;
         try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    })();
+
+    // Schedule: [start, end, type, label, short label], hours as decimals (10.75 = 10:45)
+    (function () {
+      function coding(a, b) { return [a, b, "coding", "Coding session", "Coding"]; }
+      function discussion(a, b, topic) { return [a, b, "discussion", "Discussion: " + topic, "Discuss"]; }
+      function merging(a, b) { return [a, b, "merge", "Merging session", "Merging"]; }
+      var wrapUp = [17.5, 18, "wrap", "Wrap-up of the day", "Wrap-up"];
+      function day(early, late, afternoon) {
+        return [early, [10.5, 10.75, "break", "Coffee break", "Coffee"], late,
+                [12.5, 13.5, "break", "Lunch", "Lunch"]].concat(afternoon);
+      }
+      var schedule = [
+        day(discussion(9, 10.5, "Objectives of the week and group assignment"), coding(10.75, 12.5), [coding(13.5, 17), wrapUp]),
+        day(coding(9, 10.5), coding(10.75, 12.5), [discussion(13.5, 15, "Which subgrid physics modules to target?"), coding(15, 17), wrapUp]),
+        day(coding(9, 10.5), coding(10.75, 12.5), [discussion(13.5, 15, "Shamrock coordination"), coding(15, 17), wrapUp]),
+        day(coding(9, 10.5), coding(10.75, 12.5), [coding(13.5, 17), wrapUp]),
+        day(coding(9, 10.5), merging(10.75, 12.5), [discussion(13.5, 16, "Shamrock coordination and final wrap-up")])
+      ];
+      function fmt(h) { return Math.floor(h) + ":" + String(Math.round((h % 1) * 60)).padStart(2, "0"); }
+
+      var days = document.querySelectorAll(".cal-day");
+      schedule.forEach(function (events, i) {
+        events.forEach(function (e) {
+          var el = document.createElement("div");
+          var time = fmt(e[0]) + " – " + fmt(e[1]);
+          var d = e[1] - e[0];
+          el.className = "ev " + e[2] + (d < 0.5 ? " short" : d < 1 ? " compact" : "");
+          el.style.setProperty("--s", e[0] - 9);
+          el.style.setProperty("--d", d);
+          el.title = time + " " + e[3];
+          el.innerHTML = "<b></b><i></i><span></span>";
+          el.children[0].textContent = e[3];
+          el.children[1].textContent = e[4];
+          el.children[2].textContent = time;
+          days[i].appendChild(el);
+        });
       });
     })();
 
