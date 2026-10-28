@@ -324,7 +324,7 @@
     section.block { padding: 48px 0; }
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 2fr;
       gap: 24px;
     }
     .card {
@@ -356,6 +356,20 @@
       font-weight: 500;
       color: var(--muted);
     }
+    .card h3 {
+      margin: 18px 0 2px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .obj-groups {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 32px;
+    }
+    .obj-groups h3 { margin-top: 0; }
     .card ul { list-style: none; }
     .card li {
       position: relative;
@@ -397,6 +411,7 @@
       opacity: 1;
     }
     .card li span.note { color: var(--muted); }
+    .nowrap { white-space: nowrap; }
     .pr {
       display: inline-flex;
       align-items: center;
@@ -542,12 +557,13 @@
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--text); }
 
-    @media (max-width: 680px) {
+    @media (max-width: 900px) {
       .grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 560px) {
       .cal { --gutter: 40px; }
+      .obj-groups { grid-template-columns: 1fr; }
       .glow span { width: 120vw; height: 120vw; }
       .card .people { font-size: 0.82rem; }
       .brush { margin: 24px -8px 0; }
@@ -617,8 +633,8 @@
         <div class="card">
           <h2>Todo <small>by 2 November</small></h2>
           <ul>
-            <li class="done">EOS <span class="note">(Godunov solver)</span> <span class="note">(<a class="pr" href="https://github.com/Shamrock-code/Shamrock/pull/2623" title="Merged pull request"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"/></svg>#2623</a>)</span></li>
-            <li class="done">External force coupling <span class="note">(<a class="pr" href="https://github.com/Shamrock-code/Shamrock/pull/2651" title="Merged pull request"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"/></svg>#2651</a>)</span></li>
+            <li class="done">EOS <span class="note">(Godunov solver)</span> <span class="note nowrap">(<a class="pr" href="https://github.com/Shamrock-code/Shamrock/pull/2623" title="Merged pull request"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"/></svg>#2623</a>)</span></li>
+            <li class="done">External force coupling <span class="note nowrap">(<a class="pr" href="https://github.com/Shamrock-code/Shamrock/pull/2651" title="Merged pull request"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"/></svg>#2651</a>)</span></li>
             <li>Self gravity merge</li>
             <li>Fast setup</li>
             <li>Cell injection mechanism <span class="note">(setup)</span></li>
@@ -627,16 +643,40 @@
 
         <div class="card objectives">
           <h2>Objectives</h2>
-          <ul>
-            <li>A galactic disc setup <span class="note">(and deliver feedback on the logs, etc.)</span></li>
-            <li>Post-Newtonian recipes for sinks</li>
-            <li>Match some RAMSES example setups <span class="note">(and related documentation)</span></li>
-            <li>Coala / Godunov solver coupling</li>
-            <li>Analytical gravity <span class="note">?</span></li>
-            <li>Discuss Shamrock coordination</li>
-            <li>Discuss communication channels <span class="note">(Zulip, Discord, …)</span></li>
-            <li>Discuss which subgrid physics modules to target <span class="note">(resistivity and opacity tables, …)</span></li>
-          </ul>
+          <div class="obj-groups">
+            <div class="group">
+              <h3>Setups</h3>
+              <ul>
+                <li>A galactic disc setup <span class="note">(and deliver feedback on the logs, etc.)</span></li>
+                <li>Match some RAMSES example setups <span class="note">(and related documentation)</span></li>
+              </ul>
+            </div>
+            <div class="group">
+              <h3>Physics</h3>
+              <ul>
+                <li>Post-Newtonian recipes for sinks</li>
+                <li>Coala / Godunov solver coupling</li>
+                <li>Analytical gravity <span class="note">?</span></li>
+              </ul>
+            </div>
+            <div class="group">
+              <h3>Numerics</h3>
+              <ul>
+                <li>Fused interpolation &amp; flux</li>
+                <li>Bisecting NR <i>h</i> iteration with neigh. limiter</li>
+                <li>Better sort</li>
+                <li>Tree traversal optimisations</li>
+              </ul>
+            </div>
+            <div class="group">
+              <h3>Discussions</h3>
+              <ul>
+                <li>Shamrock coordination</li>
+                <li>Communication channels <span class="note">(Zulip, Discord, …)</span></li>
+                <li>Which subgrid physics modules to target <span class="note">(resistivity and opacity tables, …)</span></li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div class="card wide">
