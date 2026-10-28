@@ -374,6 +374,18 @@
       border: 2px solid var(--accent);
       opacity: 0.7;
     }
+    .card li.done::before { background: var(--accent); opacity: 1; }
+    .card li.done::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 17px;
+      width: 4px;
+      height: 8px;
+      border: solid var(--bg);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
     .card.objectives li::before {
       border: none;
       border-radius: 50%;
@@ -561,9 +573,9 @@
         <div class="card">
           <h2>Todo <small>by 2 November</small></h2>
           <ul>
-            <li>EOS <span class="note">(Godunov solver)</span></li>
+            <li class="done">EOS <span class="note">(Godunov solver)</span></li>
+            <li class="done">External force coupling</li>
             <li>Self gravity merge</li>
-            <li>Analytical gravity <span class="note">?</span></li>
             <li>Fast setup</li>
             <li>Cell injection mechanism <span class="note">(setup)</span></li>
           </ul>
@@ -576,6 +588,7 @@
             <li>Post-Newtonian recipes for sinks</li>
             <li>Match some RAMSES example setups <span class="note">(and related documentation)</span></li>
             <li>Coala / Godunov solver coupling</li>
+            <li>Analytical gravity <span class="note">?</span></li>
             <li>Discuss Shamrock coordination</li>
             <li>Discuss which subgrid physics modules to target <span class="note">(resistivity and opacity tables, …)</span></li>
           </ul>
