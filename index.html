@@ -540,6 +540,32 @@
       paint-order: stroke;
     }
 
+    /* Sponsors: logos sit on white tiles so none of them is altered in dark mode */
+    .card .sponsors {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    .card .sponsors li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+    }
+    .card .sponsors li::before { content: none; }
+    .card .sponsors img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; }
+    @media (max-width: 900px) {
+      .card .sponsors { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .card .sponsors { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .card .sponsors li { height: 76px; padding: 10px; }
+    }
+
     /* Footer */
     footer {
       padding: 32px 0;
@@ -750,6 +776,17 @@
             <dt>Where</dt>
             <dd>CBP room, 1H M7, ENS de Lyon</dd>
           </dl>
+        </div>
+
+        <div class="card wide">
+          <h2>Sponsors</h2>
+          <ul class="sponsors">
+            <li><img src="assets/sponsors/cral.png" alt="CRAL" width="138" height="80"></li>
+            <li><img src="assets/sponsors/france2030-origines.png" alt="France 2030, Programme de recherche Origines" width="164" height="80"></li>
+            <li><img src="assets/sponsors/udl-ens-lyon.png" alt="Université de Lyon, ENS de Lyon" width="200" height="80"></li>
+            <li><img src="assets/sponsors/cbpsmn.png" alt="CBPsmn, Centre Blaise Pascal de Simulation et de Modélisation Numérique" width="210" height="80"></li>
+            <li><img src="assets/sponsors/space.png" alt="SPACE" width="212" height="78"></li>
+          </ul>
         </div>
       </div>
     </section>
