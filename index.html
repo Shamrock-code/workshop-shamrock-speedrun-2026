@@ -428,6 +428,24 @@
     }
     .card.wide { grid-column: 1 / -1; }
     .card .empty { color: var(--muted); font-style: italic; }
+    .results {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
+      gap: 24px;
+    }
+    .results figure { margin: 0; }
+    .results video,
+    .results img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+    }
+    .results figcaption { margin-top: 10px; }
+    .results figcaption b { display: block; font-weight: 600; }
+    .results figcaption span { color: var(--muted); font-size: 0.9rem; }
     .card .people {
       padding: 8px 0;
       text-align: center;
@@ -766,8 +784,14 @@
         </div>
 
         <div class="card wide">
-          <h2>Outcomes</h2>
-          <p class="empty">Nothing yet.</p>
+          <h2>Results of the week</h2>
+          <div class="results">
+            <figure>
+              <video src="assets/results/tde-particle-injection.mp4" poster="assets/results/tde-particle-injection.jpg"
+                     width="1400" height="1200" autoplay muted loop playsinline controls preload="metadata"></video>
+              <figcaption><b>TDE with particle injection in SPH</b><span>Y. B. Lapeyre</span></figcaption>
+            </figure>
+          </div>
         </div>
 
         <div class="card wide">
@@ -851,6 +875,14 @@
         });
       });
     })();
+
+    // Don't autoplay result videos for visitors who asked for reduced motion
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll(".results video[autoplay]").forEach(function (v) {
+        v.removeAttribute("autoplay");
+        v.pause();
+      });
+    }
 
     // Countdown (times in Lyon, CET = UTC+1 in November)
     (function () {
