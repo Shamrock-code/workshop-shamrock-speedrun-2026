@@ -421,10 +421,13 @@
       font-weight: 500;
     }
     .pr:hover { text-decoration: underline; }
+    .pr.draft { color: #59636e; }
     .pr svg { width: 14px; height: 14px; fill: currentColor; }
     :root[data-theme="dark"] .pr { color: #a371f7; }
+    :root[data-theme="dark"] .pr.draft { color: #9198a1; }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) .pr { color: #a371f7; }
+      :root:not([data-theme="light"]) .pr.draft { color: #9198a1; }
     }
     .card.wide { grid-column: 1 / -1; }
     .card .empty { color: var(--muted); font-style: italic; }
@@ -446,7 +449,27 @@
     .results figcaption { margin-top: 10px; }
     .results figcaption b { display: block; font-weight: 600; }
     .results figcaption p { font-size: 0.95rem; }
-    .results figcaption span { color: var(--muted); font-size: 0.9rem; }
+    .results figcaption > span { display: block; color: var(--muted); font-size: 0.9rem; }
+    .results figcaption ul { margin: 6px 0 4px; padding-left: 1.2em; list-style: disc; font-size: 0.95rem; }
+    .results figcaption li { position: static; padding: 2px 0; border: none; }
+    .results figcaption li::before { content: none; }
+    .results code { font-family: var(--mono); font-size: 0.85em; }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 6px;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-style: normal;
+      font-weight: 600;
+      vertical-align: 2px;
+      color: #fff;
+    }
+    .status svg { width: 12px; height: 12px; fill: currentColor; }
+    .status.merged { background: #8250df; }
+    .status.draft { background: #6e7781; }
     .card .people {
       padding: 8px 0;
       text-align: center;
@@ -796,6 +819,31 @@
               <video src="assets/results/commercon-collapse.mp4" poster="assets/results/commercon-collapse.jpg"
                      width="900" height="750" autoplay muted loop playsinline controls preload="metadata"></video>
               <figcaption><b>Commerçon 2008-like SPH collapse</b><p>Code comparison with the Godunov solver</p><span>Y. B. Lapeyre</span></figcaption>
+            </figure>
+            <figure>
+              <figcaption>
+                <b>New protoplanetary disk setup <em class="status merged"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"/></svg>Merged</em></b>
+                <ul>
+                  <li>Added a <code>PointMassGravity</code> external force</li>
+                  <li>Added a <a href="https://shamrock-code.github.io/Shamrock/sphinx/_as_gen/ramses/run_disc.html">simple gas disk example</a></li>
+                  <li>PR: <a class="pr" href="https://github.com/Shamrock-code/Shamrock/pull/2682" title="Merged pull request"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"/></svg>#2682</a></li>
+                </ul>
+                <span>N. Brucy</span>
+              </figcaption>
+            </figure>
+            <figure>
+              <video src="assets/results/galaxy-behrendt.mp4" poster="assets/results/galaxy-behrendt.jpg"
+                     width="1280" height="960" autoplay muted loop playsinline controls preload="metadata"></video>
+              <figcaption>
+                <b>New simple galaxy setup <em class="status draft"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.25 1A2.25 2.25 0 0 1 4 5.372v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.251 2.251 0 0 1 3.25 1Zm9.5 14a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5ZM2.5 3.25a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0ZM3.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm9.5 0a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM14 7.5a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Zm0-4.25a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Z"/></svg>Draft</em></b>
+                <p>Inspired by Behrendt+2015</p>
+                <ul>
+                  <li>Added a Burkert profile external force</li>
+                  <li>Reproduced the Behrendt setup: self-gravity, Jeans refinement and the new external force</li>
+                  <li>PR: <a class="pr draft" href="https://github.com/Shamrock-code/Shamrock/pull/2694" title="Draft pull request"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.25 1A2.25 2.25 0 0 1 4 5.372v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.251 2.251 0 0 1 3.25 1Zm9.5 14a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5ZM2.5 3.25a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0ZM3.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm9.5 0a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM14 7.5a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Zm0-4.25a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Z"/></svg>#2694</a></li>
+                </ul>
+                <span>N. Brucy</span>
+              </figcaption>
             </figure>
           </div>
         </div>
